@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kennedy Cafe – Kennedy, MN</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;600;700&family=Lora:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B03A2E;
+  --darkred:#7B241C;
+  --blush:#F5E6E0;
+  --rose:#E8C4B8;
+  --cream:#FDF8F0;
+  --warm:#FAF0E0;
+  --butter:#F5E6A0;
+  --gold:#C8960A;
+  --brown:#4A2C0A;
+  --bark:#6B3A10;
+  --muted:#9A7A5A;
+  --sage:#6B8C5A;
+  --white:#FFFFFF;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--brown);font-family:'Nunito',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:0;width:100%;z-index:100;
+  background:var(--red);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;height:60px;
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--cream);font-style:italic}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(253,248,240,0.8);text-decoration:none;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;transition:color 0.2s}
+.nav-links a:hover{color:var(--butter)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  background:var(--warm);
+  display:flex;align-items:center;
+  padding:6rem 3rem 4rem;
+  position:relative;overflow:hidden;
+}
+/* checkered floor pattern suggestion at bottom */
+.hero::before{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:8px;
+  background:repeating-linear-gradient(90deg,var(--red) 0,var(--red) 20px,var(--cream) 20px,var(--cream) 40px);
+}
+/* warm glow */
+.hero::after{
+  content:'';position:absolute;
+  top:-20%;right:-10%;
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(200,150,10,0.08) 0%,transparent 70%);
+}
+.hero-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:4rem;max-width:1100px;margin:0 auto;
+  align-items:center;
+}
+.hero-eyebrow{
+  font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;
+  color:var(--red);margin-bottom:1rem;font-weight:700;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.hero-eyebrow::before{content:'';width:24px;height:2px;background:var(--red)}
+.hero-h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3.5rem,7vw,5.5rem);
+  color:var(--brown);line-height:1.05;
+  margin-bottom:0.5rem;
+}
+.hero-h1 em{color:var(--red);font-style:italic}
+.hero-sub{
+  font-family:'Lora',serif;font-style:italic;
+  font-size:1rem;color:var(--muted);
+  letter-spacing:1px;margin-bottom:1.5rem;
+}
+.hero-divider{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;
+}
+.hero-divider span{font-size:1.2rem;color:var(--red)}
+.hero-divider::before,.hero-divider::after{content:'';flex:1;height:1px;background:var(--rose)}
+.hero-stars{display:flex;align-items:center;gap:0.4rem;margin-bottom:1.25rem}
+.star{color:var(--gold);font-size:1rem}
+.star-text{font-size:0.8rem;color:var(--muted);letter-spacing:1px;margin-left:0.25rem}
+.hero-desc{
+  font-family:'Lora',serif;font-style:italic;font-weight:300;
+  font-size:1rem;color:var(--bark);
+  line-height:1.9;max-width:440px;margin-bottom:2rem;
+}
+.hero-info{margin-bottom:2rem}
+.hero-info-row{
+  font-size:0.85rem;color:var(--muted);
+  margin-bottom:0.4rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.hero-info-row strong{color:var(--brown)}
+.dot{color:var(--red);font-size:0.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-red{
+  background:var(--red);color:var(--cream);
+  padding:0.85rem 2rem;font-size:0.75rem;
+  letter-spacing:2px;text-transform:uppercase;font-weight:700;
+  border:none;cursor:pointer;text-decoration:none;
+  font-family:'Nunito',sans-serif;transition:background 0.2s;
+}
+.btn-red:hover{background:var(--darkred)}
+.btn-outline{
+  background:transparent;color:var(--red);
+  padding:0.85rem 2rem;font-size:0.75rem;
+  letter-spacing:2px;text-transform:uppercase;font-weight:700;
+  border:2px solid var(--red);cursor:pointer;text-decoration:none;
+  font-family:'Nunito',sans-serif;transition:all 0.2s;
+}
+.btn-outline:hover{background:var(--blush)}
+
+/* hero right — cozy card stack */
+.hero-right{display:flex;flex-direction:column;gap:1rem}
+.cozy-card{
+  background:var(--white);
+  padding:1.5rem 1.75rem;
+  border-left:4px solid var(--red);
+  position:relative;
+}
+.cozy-card-label{
+  font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--red);font-weight:700;margin-bottom:0.4rem;
+}
+.cozy-card-text{
+  font-family:'Lora',serif;font-style:italic;
+  font-size:0.9rem;color:var(--brown);line-height:1.7;
+}
+
+/* SPECIALS BAND */
+.specials{
+  background:var(--red);
+  padding:1.2rem 3rem;
+  display:flex;justify-content:center;
+  gap:0;
+}
+.special{
+  flex:1;max-width:220px;text-align:center;
+  padding:0 2rem;
+  border-right:1px solid rgba(253,248,240,0.2);
+}
+.special:last-child{border:none}
+.special-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(253,248,240,0.6);font-weight:700}
+.special-name{font-family:'Playfair Display',serif;font-size:1rem;color:var(--cream);font-style:italic}
+
+/* ABOUT */
+.about{background:var(--blush);padding:6rem 3rem}
+.about-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-label{font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:0.75rem;font-weight:700}
+.about h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--brown);margin-bottom:1.5rem;line-height:1.2}
+.about p{font-family:'Lora',serif;font-weight:300;font-size:0.95rem;color:var(--bark);line-height:2;margin-bottom:1rem}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat{background:var(--white);padding:1.75rem 1.5rem;border-top:3px solid var(--red)}
+.stat-val{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--red);line-height:1}
+.stat-lbl{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:0.3rem}
+
+/* MENU */
+.menu{background:var(--warm);padding:6rem 3rem}
+.menu-inner{max-width:1000px;margin:0 auto}
+.menu-header{text-align:center;margin-bottom:3rem}
+.menu-header h2{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,3.5rem);color:var(--brown);font-style:italic}
+.menu-header p{font-family:'Lora',serif;font-style:italic;color:var(--muted);margin-top:0.5rem}
+.menu-divider{display:flex;align-items:center;gap:1rem;margin:1rem auto;max-width:300px}
+.menu-divider::before,.menu-divider::after{content:'';flex:1;height:1px;background:var(--rose)}
+.menu-divider span{color:var(--red);font-size:1rem}
+.menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.menu-section h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--red);margin-bottom:1.25rem;font-style:italic}
+.menu-item{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:0.6rem 0;border-bottom:1px dashed var(--rose);
+  font-size:0.9rem;
+}
+.menu-item:last-child{border:none}
+.menu-item-name{color:var(--brown);font-weight:600}
+.menu-item-name.fave{color:var(--red)}
+.menu-item-note{font-family:'Lora',serif;font-style:italic;font-size:0.75rem;color:var(--muted);margin-top:0.1rem}
+.must-try{
+  font-size:0.55rem;background:var(--red);color:var(--cream);
+  padding:0.15rem 0.45rem;letter-spacing:1px;text-transform:uppercase;
+  font-weight:700;margin-left:0.5rem;vertical-align:middle;
+}
+
+/* REVIEWS */
+.reviews{background:var(--white);padding:6rem 3rem}
+.reviews-inner{max-width:1000px;margin:0 auto}
+.reviews-header{text-align:center;margin-bottom:3rem}
+.reviews-header h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--brown);font-style:italic}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.review-card{background:var(--cream);padding:2rem;border-radius:2px;position:relative}
+.review-card::before{
+  content:'"';
+  position:absolute;top:-0.5rem;left:1rem;
+  font-family:'Playfair Display',serif;
+  font-size:4rem;color:var(--rose);line-height:1;
+}
+.review-stars{color:var(--gold);font-size:0.85rem;margin-bottom:0.75rem}
+.review-text{font-family:'Lora',serif;font-style:italic;font-size:0.9rem;color:var(--bark);line-height:1.8;margin-bottom:1rem;padding-top:0.5rem}
+.review-author{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+
+/* INFO */
+.info{background:var(--brown);padding:5rem 3rem}
+.info-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem}
+.info h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--butter);margin-bottom:1rem;font-style:italic}
+.info p,.info address{font-size:0.9rem;color:rgba(245,230,160,0.65);line-height:1.9;font-style:normal}
+.info a{color:var(--butter);text-decoration:none}
+.info-highlight{color:var(--butter) !important;font-weight:600}
+
+footer{
+  background:var(--darkred);padding:1.5rem 3rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+}
+footer p{font-size:0.75rem;color:rgba(253,248,240,0.4);letter-spacing:0.5px}
+footer span{color:var(--butter)}
+
+@media(max-width:700px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .about-inner{grid-template-columns:1fr}
+  .menu-cols{grid-template-columns:1fr}
+  .specials{flex-wrap:wrap;gap:1rem}
+  .special{border:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Kennedy Cafe</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#info">Find Us</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Kennedy, Minnesota</div>
+      <h1 class="hero-h1">Kennedy<br/><em>Cafe</em></h1>
+      <div class="hero-sub">518 Atlantic Ave &nbsp;·&nbsp; Est. in Kennedy, MN</div>
+      <div class="hero-divider"><span>✦</span></div>
+      <div class="hero-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        <span class="star-text">4.7 Stars · 46 Reviews</span>
+      </div>
+      <p class="hero-desc">The kind of place where the coffee is always hot, the food is always fresh, and the faces are always friendly. Kennedy's favorite spot for breakfast and lunch.</p>
+      <div class="hero-info">
+        <div class="hero-info-row"><span class="dot">●</span> <strong>518 Atlantic Ave</strong>, Kennedy, MN 56733</div>
+        <div class="hero-info-row"><span class="dot">●</span> <strong>(218) 774-2020</strong></div>
+        <div class="hero-info-row"><span class="dot">●</span> Opens <strong>6:30 AM</strong> Tuesday – Sunday</div>
+        <div class="hero-info-row"><span class="dot">●</span> Dine-In &nbsp;·&nbsp; Takeout &nbsp;·&nbsp; Delivery</div>
+      </div>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-red">See the Menu</a>
+        <a href="#info" class="btn-outline">Find Us</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="cozy-card">
+        <div class="cozy-card-label">Guest Favorite</div>
+        <div class="cozy-card-text">"Always stop if I'm going north — great food, great price."</div>
+      </div>
+      <div class="cozy-card">
+        <div class="cozy-card-label">The Vibe</div>
+        <div class="cozy-card-text">"The place to meet people and have a great meal."</div>
+      </div>
+      <div class="cozy-card">
+        <div class="cozy-card-label">Service</div>
+        <div class="cozy-card-text">"Clean, small town friendly diner. Great tomato soup!"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="specials">
+  <div class="special">
+    <div class="special-label">Morning Must</div>
+    <div class="special-name">Biscuits & Gravy</div>
+  </div>
+  <div class="special">
+    <div class="special-label">Lunch Favorite</div>
+    <div class="special-name">Patty Melt</div>
+  </div>
+  <div class="special">
+    <div class="special-label">Crowd Pleaser</div>
+    <div class="special-name">Tomato Soup</div>
+  </div>
+  <div class="special">
+    <div class="special-label">Open From</div>
+    <div class="special-name">6:30 AM Daily</div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <div class="about-label">Our Story</div>
+      <h2>A True Small Town Gem</h2>
+      <p>Kennedy Cafe is the kind of place that reminds you why small town diners are irreplaceable. A warm smile when you walk in, a fresh cup of coffee before you even ask, and a menu full of honest, homemade food made with care.</p>
+      <p>Whether you're a local stopping in before work or a traveler passing through on the way north, you'll find exactly what you were looking for here.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat"><div class="stat-val">4.7★</div><div class="stat-lbl">Google Rating</div></div>
+      <div class="stat"><div class="stat-val">6:30</div><div class="stat-lbl">AM — Early Bird</div></div>
+      <div class="stat"><div class="stat-val">MN</div><div class="stat-lbl">Small Town Pride</div></div>
+      <div class="stat"><div class="stat-val">$10</div><div class="stat-lbl">Avg. per Person</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="menu-inner">
+    <div class="menu-header">
+      <h2>What's Cooking</h2>
+      <p>Breakfast served from 6:30 AM &nbsp;·&nbsp; Lunch all day</p>
+      <div class="menu-divider"><span>✦</span></div>
+    </div>
+    <div class="menu-cols">
+      <div class="menu-section">
+        <h3>Breakfast</h3>
+        <div class="menu-item">
+          <div><div class="menu-item-name fave">Biscuits & Gravy <span class="must-try">Must Try</span></div><div class="menu-item-note">A Kennedy classic</div></div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name fave">Hash Browns ★</div><div class="menu-item-note">Just what you need</div></div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name">Eggs & Bacon</div></div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name">Pancakes</div></div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name">French Toast</div></div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name">Breakfast Sandwich</div></div>
+        </div>
+      </div>
+      <div class="menu-section">
+        <h3>Lunch</h3>
+        <div class="menu-item">
+          <div><div class="menu-item-name fave">Patty Melt <span class="must-try">Must Try</span></div><div class="menu-item-note">A diner staple done right</div></div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name fave">Tomato Soup ★</div><div class="menu-item-note">"Great tomato soup!"</div></div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name fave">House Burger ★</div><div class="menu-item-note">Fresh & evenly distributed</div></div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name fave">Onion Rings ★</div><div class="menu-item-note">Great every time</div></div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name">Daily Specials</div></div>
+        </div>
+        <div class="menu-item">
+          <div><div class="menu-item-name">Coffee & Drinks</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="reviews-inner">
+    <div class="reviews-header">
+      <h2>What People Are Saying</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Always stop if I'm going north — great food, great price. The place to meet people and have a great meal.</p>
+        <div class="review-author">— Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Had a good burger — fresh and evenly distributed. Service was great, waitress checked on us plenty but not too much.</p>
+        <div class="review-author">— Lovethose808s, Guest</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Clean, small town friendly diner. Great tomato soup! Will definitely be back.</p>
+        <div class="review-author">— Lottie, Guest</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Great food — did breakfast and lunch in a couple of days. Onion rings and burger were great. Hash browns just what we needed.</p>
+        <div class="review-author">— Jordan L., Local Guide</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="info" id="info">
+  <div class="info-inner">
+    <div>
+      <h3>Find Us</h3>
+      <address>
+        518 Atlantic Ave<br/>
+        Kennedy, MN 56733<br/><br/>
+        <a href="tel:2187742020">(218) 774-2020</a>
+      </address>
+    </div>
+    <div>
+      <h3>Hours</h3>
+      <p>
+        Tuesday – Sunday<br/>
+        Opens at <span class="info-highlight">6:30 AM</span><br/><br/>
+        <span style="font-size:0.8rem;opacity:0.6">Call ahead to confirm hours</span>
+      </p>
+    </div>
+    <div>
+      <h3>We Offer</h3>
+      <p>
+        Dine-In<br/>
+        Takeout<br/>
+        Delivery<br/><br/>
+        <span class="info-highlight">Card & Tap to Pay accepted!</span>
+      </p>
+    </div>
+    <div>
+      <h3>Don't Miss</h3>
+      <p>
+        Biscuits & Gravy<br/>
+        Patty Melt<br/>
+        Tomato Soup<br/>
+        House Burger<br/>
+        Onion Rings
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 <span>Kennedy Cafe</span> &nbsp;·&nbsp; 518 Atlantic Ave, Kennedy, MN &nbsp;·&nbsp; (218) 774-2020</p>
+  <p>Built with care for our community</p>
+</footer>
+
+</body>
+</html>
